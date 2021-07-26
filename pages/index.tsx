@@ -11,11 +11,13 @@ interface HomeProps {
   w4fMetas: W4FMetaData[],
 }
 
+const webTitle = "butterandfly's Playground 🎮";
+
 export default function Home({ blogMetas, w4fMetas }: HomeProps) {
   return (
     <div className="root">
       <Head>
-        <title>butterandfly's Playground 🎮 </title>
+        <title>{webTitle}</title>
         {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" /> */}
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
@@ -41,7 +43,7 @@ function Banner() {
   return (
     <div className="root">
       <Container maxWidth="lg">
-        <div className="banner">butterandfly's Playground 🎮 </div>
+        <div className="banner">{webTitle}</div>
         {/* <div className="sub">Enjoy yourself here!</div> */}
       </Container>
       <style jsx>{`

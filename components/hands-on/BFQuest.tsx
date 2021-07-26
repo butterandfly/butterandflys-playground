@@ -16,7 +16,7 @@ export interface BFQuestProps extends QuestComponetPros {
   quest: BFQuestData,
 }
 
-export default function BFQuest({quest, questProgress, updateProgress}: BFQuestProps) {
+export default function BFQuest({quest, questProgress, onQuestProgressUpdated}: BFQuestProps) {
   const prog = questProgress;
 
   const {status, attempts, currentInput} = prog;
@@ -31,12 +31,12 @@ export default function BFQuest({quest, questProgress, updateProgress}: BFQuestP
       ...prog,
       currentInput: val,
     };
-    updateProgress(newProg)
+    onQuestProgressUpdated(newProg)
   }
 
   const submit = () => {
     const newProg = checkAnswer(quest.correct, prog, compare);
-    updateProgress(newProg)
+    onQuestProgressUpdated(newProg)
   };
 
   return (<div>

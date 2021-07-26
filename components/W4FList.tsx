@@ -1,6 +1,5 @@
 import { W4FMetaData } from "../lib/w4f";
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 
 export interface W4FListProps {
@@ -21,11 +20,9 @@ export default function W4FList({w4fMetas}: W4FListProps) {
       <Container maxWidth="lg">
         <h1>Words for Fluency 🔠</h1>
         <hr />
-        {/* <Grid container spacing={2}> */}
         <div className="grid">
           {genList()}
         </div>
-        {/* </Grid> */}
       </Container>
       <style jsx>{`
         .root {
@@ -68,7 +65,6 @@ export default function W4FList({w4fMetas}: W4FListProps) {
 
 function W4FCard({w4fMeta, href}: {w4fMeta: W4FMetaData, href: string}) {
   return (
-    // <Grid key={w4fMeta.id} item xs={2}>
     <div key={w4fMeta.id}>
       <Link href={href}>
       <a className="container">

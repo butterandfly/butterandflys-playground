@@ -35,12 +35,14 @@ export default function BlogLayout({title, children}: {title: string, children?:
   ) 
 }
 
+const webTitle = "butterandfly's Playground 🎮";
+
 export function LayoutHeader({title}: any) {
   return (
     <div className="root">
       <Container maxWidth="lg">
         <div className="bread">
-          <Link href="/"><a>butterandfly's Playground 🎮</a></Link>
+          <Link href="/"><a>{webTitle}</a></Link>
           {/* <span className="slash"> / </span> */}
           {/* <div className="title">{title}</div> */}
         </div>
