@@ -53,15 +53,15 @@ export default function Part({part, partProgress, onPartProgressUpdated}: PartPr
   }
 
   const gotIt = (<div>
-    <PiecesRenderer onQuestProgressUpdated={onQuestProgressUpdated} quest={part.quest} questProgress={partProgress.questProgress} pieces={part.pieces}></PiecesRenderer>
-    <GotIt quest={part.quest} questProgress={partProgress.questProgress} onQuestProgressUpdated={onQuestProgressUpdated} />
+    <PiecesRenderer onQuestProgressUpdated={onQuestProgressUpdated} quest={part.quest} questProgress={partProgress.questProgress!} pieces={part.pieces}></PiecesRenderer>
+    <GotIt quest={part.quest} questProgress={partProgress.questProgress!} onQuestProgressUpdated={onQuestProgressUpdated} />
   </div>)
 
   return (
     <div className="wrapper">
       {part.type === 'GotIt' 
         ? gotIt
-        : <PiecesRenderer onQuestProgressUpdated={onQuestProgressUpdated} quest={part.quest} questProgress={partProgress.questProgress} pieces={part.pieces}></PiecesRenderer>
+        : <PiecesRenderer onQuestProgressUpdated={onQuestProgressUpdated} quest={part.quest} questProgress={partProgress.questProgress!} pieces={part.pieces}></PiecesRenderer>
       }
     </div>
   )
