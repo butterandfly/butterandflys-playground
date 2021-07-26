@@ -1,15 +1,4 @@
 import Flashcard from './Flashcard'
-const testContent = `
-Front
----
-Back
-
-~~~
-
-Wonderful
----
-means great
-`
 
 export interface FlashcardListProps {
   children: string, // inner content to compile

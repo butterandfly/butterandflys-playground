@@ -1,5 +1,5 @@
 import { getAllBlogIDs, getBlog } from "../../lib/blog";
-import BlogLayout from '../../components/BlogLayout'
+import BlogLayout from '../../components/Layout'
 import MD from '../../components/hands-on/MD'
 
 interface BlogProps {

@@ -1,11 +1,14 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Paper from '@material-ui/core/Paper';
 import { PartData, PartProgressData } from '../../components/hands-on/qmd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {W4FData, W4FProgressData, getAllW4FIDs, getW4F, initW4FProgress} from '../../lib/w4f'
-import BlogLayout from '../../components/BlogLayout'
+import Layout from '../../components/Layout'
 import LockedPart from '../../components/hands-on/LockedPart'
 import Part from '../../components/hands-on/Part'
+import { useHeadShake } from '../../components/hands-on/animations';
+import { animated, useSpring } from 'react-spring';
+import ResetIcon from '@material-ui/icons/SettingsBackupRestore';
 
 interface W4FProps {
   w4f: W4FData, 
@@ -14,6 +17,19 @@ interface W4FProps {
 
 export default function W4F({w4f, initedProgress}: W4FProps) {
   const [prog, setProg] = useState<W4FProgressData>(initedProgress);
+  const storageName = 'w4f:' + w4f.id;
+  const setProgress = (p: W4FProgressData) => {
+    localStorage.setItem(storageName, JSON.stringify(p));
+    setProg(p);
+  }
+  const resetProgress = () => {
+    setProgress(initedProgress);
+  }
+
+  useEffect(() => {
+    const progStr  = localStorage.getItem(storageName);
+    if (progStr) setProg(JSON.parse(progStr));
+  }, []);
 
   const onPartProgressUpdated = (partProg: PartProgressData) => {
     // Update current part
@@ -33,7 +49,7 @@ export default function W4F({w4f, initedProgress}: W4FProps) {
     }
 
     // Update w4f progress
-    setProg({
+    setProgress({
       ...prog,
       partProgresses: newPartProgresses,
     })
@@ -48,25 +64,40 @@ export default function W4F({w4f, initedProgress}: W4FProps) {
 
   return (
     <div className="root">
-    <BlogLayout title={w4f.title}>
+    <Layout title={w4f.title}>
     <div className="container">
-      <h1 className="section-title">
-        {w4f.title}
-      </h1>
+      <div className="title-container">
+        <h1 className="section-title">
+          {w4f.title}
+        </h1>
+        <ResetIcon onClick={resetProgress} className="reset" />
+      </div>
       <div>
         {genParts()}
       </div>
+      </div>
+      </Layout>
       <style jsx>{`
+        .title-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        .root :global(.reset) {
+          font-size: 32px;
+          color: #616161;
+          font-weight: bold;
+          margin-right: 16px;
+          cursor: pointer;
+        }
         .section-title {
-          color: darkorange;
+          color: steelblue;
           margin-top: 8px;
         }
         .container {
           max-width: 960px;
         }
     `}</style>
-    </div>
-    </BlogLayout>
     </div>
   )
 }
@@ -78,17 +109,60 @@ interface W4FPartProps {
 }
 
 function W4FPart({part, partProgress, onPartProgressUpdated}: W4FPartProps) {
+  const partStyle = useSpring({
+    to: {
+      opacity: partProgress.isLocked ?0:1,
+    },
+    from: {
+      opacity: 0,
+    },
+    config: { duration: 500 },
+  })
+
   if (partProgress.isLocked) {
-    return <LockedPart />
+    return <LockedPart />;
   }
 
-  const questPart = (
+  return (<div className="root">
+    <animated.div style={partStyle}>
+    {part.type === 'GotIt'
+      ? <Part part={part} partProgress={partProgress} onPartProgressUpdated={onPartProgressUpdated} /> 
+      : <QuestionPart part={part} partProgress={partProgress} onPartProgressUpdated={onPartProgressUpdated} /> 
+    }
+    </animated.div>
+    <style jsx>{`
+      .root {
+        margin: 16px 0;
+      }
+    `}</style>
+  </div>);
+}
+
+interface QuestionPartProps {
+  part: PartData, 
+  partProgress: PartProgressData,
+  onPartProgressUpdated: (partProgress: PartProgressData) => void,
+}
+
+function QuestionPart({part, partProgress, onPartProgressUpdated}: QuestionPartProps) {
+  const [translateX, shake] = useHeadShake();
+  const onUpdated = (newProg: PartProgressData) => {
+    const newQuestProg = newProg.questProgress!;
+    if (newQuestProg.status !== 'success' && newQuestProg.attempts.length > partProgress.questProgress!.attempts.length) {
+      shake();
+    }
+    onPartProgressUpdated(newProg);
+  }
+
+  return (
     <div className="root">
+      <animated.div style={{translateX: translateX}}>
       <Paper className="g-part-paper" elevation={2}>
         <h3 className="title">Question</h3>
-        <Part part={part} partProgress={partProgress} onPartProgressUpdated={onPartProgressUpdated} />
+        <Part part={part} partProgress={partProgress} onPartProgressUpdated={onUpdated} />
       </Paper>
-      <style jsx>{`
+    </animated.div>
+    <style jsx>{`
         .root :global(.g-part-paper) {
           padding: 8px 16px;
           margin: 24px 0;
@@ -99,18 +173,6 @@ function W4FPart({part, partProgress, onPartProgressUpdated}: W4FPartProps) {
       `}</style>
     </div>
   )
-
-  return (<div className="root">
-    {part.type === 'GotIt'
-      ? <Part part={part} partProgress={partProgress} onPartProgressUpdated={onPartProgressUpdated} /> 
-      : questPart
-    }
-    <style jsx>{`
-      .root {
-        margin: 16px 0;
-      }
-    `}</style>
-  </div>);
 }
 
 

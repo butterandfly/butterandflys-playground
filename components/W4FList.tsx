@@ -35,6 +35,7 @@ export default function W4FList({w4fMetas}: W4FListProps) {
           grid-template-columns: repeat(3, 1fr);
           column-gap: 16px;
           row-gap: 1em;
+          grid-auto-rows: minmax(72px, 72px);
         }
 
         @media screen and (min-width: 600px) {
@@ -65,26 +66,26 @@ export default function W4FList({w4fMetas}: W4FListProps) {
 
 function W4FCard({w4fMeta, href}: {w4fMeta: W4FMetaData, href: string}) {
   return (
-    <div key={w4fMeta.id}>
+    <div key={w4fMeta.id} className="root">
       <Link href={href}>
       <a className="container">
-          <p className="title"><b>{w4fMeta.title}</b></p>
+          <b>{w4fMeta.title}</b>
       </a>
       </Link>
       <style jsx>{`
-        .container {
-          border: 2px solid #ffcc97;
+        .root {
+          border: 2px solid steelblue;
           border-radius: 5px;
-          padding: 8px;
-          display: flex;
+        }
+
+        .container {
           cursor: pointer;
+          width: 100%;
+          height: 100%;
+          display: flex;
           justify-content: center;
+          align-items: center;
         }
-
-        .container:hover {
-          border: 2px solid darkorange;
-        }
-
       `}</style>
       </div>
   )

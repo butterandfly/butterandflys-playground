@@ -1,7 +1,7 @@
 import Container from '@material-ui/core/Container';
 import Link from 'next/link';
 
-export default function BlogLayout({title, children}: {title: string, children?: any}) {
+export default function Layout({title, children}: {title: string, children?: any}) {
   return (
     <div className="root">
       {/* <Header></Header> */}
@@ -43,8 +43,6 @@ export function LayoutHeader({title}: any) {
       <Container maxWidth="lg">
         <div className="bread">
           <Link href="/"><a>{webTitle}</a></Link>
-          {/* <span className="slash"> / </span> */}
-          {/* <div className="title">{title}</div> */}
         </div>
       </Container>
       

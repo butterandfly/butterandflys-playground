@@ -28,7 +28,7 @@ export type PartProgressData = {
   partID: number,
   isLocked: boolean,
   isFinished: boolean,
-  questProgress?: any,
+  questProgress?: QuestProgressData,
 }
 
 export interface PartProgressesMap {
