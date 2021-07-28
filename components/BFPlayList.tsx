@@ -1,24 +1,24 @@
-import { BlogMetaData } from "../lib/blog";
+import { BFPlayMetaData } from "../lib/bfplay";
 import Container from '@material-ui/core/Container';
 import Link from 'next/link';
 
-export interface BlogListProps {
-  blogMetas: BlogMetaData[],
+export interface BFPlayListProps {
+  playMetas: BFPlayMetaData[],
 }
 
-export default function BlogList({blogMetas}: BlogListProps) {
+export default function BFPlayList({playMetas}: BFPlayListProps) {
   const genList = () => {
-    return blogMetas.map((meta: BlogMetaData) => {
+    return playMetas.map((meta: BFPlayMetaData) => {
 
-      const href = '/blogs/' + meta.id;
-      return <BlogCard key={meta.id} blogMeta={meta} href={href}></BlogCard> 
+      const href = '/plays/' + meta.id;
+      return <BFPlayCard key={meta.id} playMeta={meta} href={href}></BFPlayCard> 
     })
   }
 
   return (
     <div className="root">
       <Container maxWidth="lg">
-        <h1>Blogs 📝</h1>
+        <h1>Plays 🕹</h1>
         <hr />
         <div className="grid">
           {genList()}
@@ -57,19 +57,20 @@ export default function BlogList({blogMetas}: BlogListProps) {
   )
 }
 
-function BlogCard({blogMeta, href}: {blogMeta: BlogMetaData, href: string}) {
+function BFPlayCard({playMeta, href}: {playMeta: BFPlayMetaData, href: string}) {
 
   return (
-    <div key={blogMeta.id}>
+    <div key={playMeta.id}>
       <Link href={href}>
       <a className="container">
-          <h3 className="title">{blogMeta.title}</h3>
-          <p className="sub">{blogMeta.desc}</p>
+          {/* <p className="title"><b>{playMeta.title}</b></p> */}
+          <h3 className="title">{playMeta.title}</h3>
+          <p className="sub">{playMeta.desc}</p>
       </a>
       </Link>
       <style jsx>{`
         .container {
-          border: 2px solid darkorange;
+          border: 2px solid gray;
           border-radius: 5px;
           padding: 16px;
           display: block;

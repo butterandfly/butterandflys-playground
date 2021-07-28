@@ -4,6 +4,7 @@ import { isQuestFinished, QuestData, QuestProgressData } from './quest';
 import GotIt from './GotIt'
 import MD from './MD';
 
+
 export interface PiecesRendererProps {
   // partID: string,
   quest: QuestData,

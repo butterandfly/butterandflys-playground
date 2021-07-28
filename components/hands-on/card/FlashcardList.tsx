@@ -18,7 +18,7 @@ export default function FlashcardList({children}: FlashcardListProps) {
       .root {
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-around;
+        justify-content: space-evenly;
       }
     `}</style>
   </div>)

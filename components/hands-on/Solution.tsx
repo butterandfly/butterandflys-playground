@@ -1,8 +1,8 @@
 import {useState} from 'react'
-import { QuestComponetPros} from './quest';
+import { QuestComponentPros} from './quest';
 import MD from './MD'
 
-interface SolutionProps extends QuestComponetPros {
+interface SolutionProps extends QuestComponentPros {
   children?: any;
 }
 

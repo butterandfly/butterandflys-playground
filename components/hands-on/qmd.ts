@@ -1,14 +1,15 @@
 import GotIt, { createGotItData, initGotItProgressData } from './GotIt';
 import {Axiom, Definition, Theorem} from './MathBox';
-import BFQuest from './BFQuest';
-import {MCQuest} from './MCQuest';
+import BFQuest from './question/BFQuest';
+import {MCQuest} from './question/MCQuest';
 import Solution from './Solution';
-import {MCQuestBuilder} from './MCQuest'
-import { BFQuestBuilder } from './BFQuest';
+import {MCQuestBuilder} from './question/MCQuest'
+import { BFQuestBuilder } from './question/BFQuest';
 import { Idea } from './InfoBox';
 
 import { QuestData, QuestProgressData } from "./quest"
-import FlashcardList from './cards/FlashcardList';
+import FlashcardList from './card/FlashcardList';
+import MCQuestList, { MCQuestListBuilder } from './question/MCQuestList';
 
 export type PartType = 'GotIt' | 'Quest';
 
@@ -61,11 +62,13 @@ export const mdxComponents: {[key: string]: any} = {
   Axiom: Axiom,
   Idea: Idea,
   FlashcardList: FlashcardList,
+  MCQuestList: MCQuestList,
 }
 
 export const questComponents = [
   'MCQuest',
   'BFQuest',
+  'MCQuestList',
 ];
 
 export const innerContentTakers = [
@@ -81,6 +84,7 @@ export const innerContentTakers = [
 export const buildersMap: {[key: string]: QuestBuilder} = {
   'MCQuest': MCQuestBuilder,
   'BFQuest': BFQuestBuilder,
+  'MCQuestList': MCQuestListBuilder,
 }
 
 const partContainers = ['GotIt', 'Quest'];

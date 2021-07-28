@@ -76,6 +76,7 @@ function W4FCard({w4fMeta, href}: {w4fMeta: W4FMetaData, href: string}) {
         .root {
           border: 2px solid steelblue;
           border-radius: 5px;
+          padding: 0 8px;
         }
 
         .container {

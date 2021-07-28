@@ -16,6 +16,7 @@ export function InfoBox({children, title, borderColor, backgroundColor}: InfoBox
         border-left: 3px solid ${borderColor};
         display: flex;
         background: ${backgroundColor};
+        margin: 18px 0;
       }
 
       .root .box-header {

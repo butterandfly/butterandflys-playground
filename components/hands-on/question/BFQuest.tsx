@@ -1,7 +1,7 @@
 import TextField from '@material-ui/core/TextField'
-import { QuestComponetPros, QuestData, QuestProgressData, checkAnswer, isQuestFinished } from './quest';
-import Submit from './Submit'
-import { Piece, QuestBuilder } from './qmd';
+import { QuestComponentPros, QuestData, QuestProgressData, checkAnswer, isQuestFinished } from '../quest';
+import Submit from '../Submit'
+import { Piece, QuestBuilder } from '../qmd';
 
 export interface BFQuestData extends QuestData {
   correct: string;
@@ -12,7 +12,7 @@ export interface BFQuestProgressData extends QuestProgressData {
   attempts: string[];
 }
 
-export interface BFQuestProps extends QuestComponetPros {
+export interface BFQuestProps extends QuestComponentPros {
   quest: BFQuestData,
 }
 

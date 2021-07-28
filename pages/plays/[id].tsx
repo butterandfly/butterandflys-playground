@@ -1,14 +1,14 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { PartProgressData } from '../../components/hands-on/qmd';
-import {W4FData, W4FProgressData, getAllW4FIDs, getW4F, initW4FProgress} from '../../lib/w4f'
-import Play, { getUpdatedPlayProgress, useLocalProgress } from '../../components/hands-on/Play';
+import { GetStaticProps } from "next";
+import Play, { getUpdatedPlayProgress, useLocalProgress } from "../../components/hands-on/Play";
+import { PartProgressData } from "../../components/hands-on/qmd";
+import { BFPlayData, BFPlayProgressData, getAllPlayIDs, getPlay, initBFPlayProgress } from "../../lib/bfplay";
 
-interface W4FProps {
-  w4f: W4FData, 
-  initedProgress: W4FProgressData, 
+interface BFPlayProps {
+  w4f: BFPlayData, 
+  initedProgress: BFPlayProgressData, 
 }
 
-export default function W4F({w4f, initedProgress}: W4FProps) {
+export default function BFPlay({w4f, initedProgress}: BFPlayProps) {
   const [prog, setProgress] = useLocalProgress('w4f', w4f.id, initedProgress);
   const resetProgress = () => {
     setProgress(initedProgress);
@@ -22,9 +22,8 @@ export default function W4F({w4f, initedProgress}: W4FProps) {
   return (<Play play={w4f} progress={prog} title={w4f.title} onPartProgressUpdated={onPartProgressUpdated} onReset={resetProgress} />)
 }
 
-// Get all w4fs.
-export const getStaticPaths: GetStaticPaths = async () => {
-  const w4fIDs = getAllW4FIDs();
+export const getStaticPaths = async () => {
+  const w4fIDs = getAllPlayIDs();
 
   const paths = w4fIDs.map((id: string) => {
     return {params: {id: id}}
@@ -38,8 +37,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params!.id as string;
-  const w4f = getW4F(id)
-  const progress = await initW4FProgress(w4f);
+  const w4f = getPlay(id)
+  const progress = await initBFPlayProgress(w4f);
 
   return {
     props: {w4f, initedProgress: progress }

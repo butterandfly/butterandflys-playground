@@ -5,15 +5,18 @@ import { BlogMetaData, getAllBlogMetas } from '../lib/blog';
 import BlogList from '../components/BlogList'
 import W4FList from '../components/W4FList'
 import { getAllW4FMetas, W4FMetaData } from '../lib/w4f';
+import { BFPlayMetaData, getAllBFPlayMetas } from '../lib/bfplay';
+import BFPlayList from '../components/BFPlayList'
 
 interface HomeProps {
   blogMetas: BlogMetaData[],
   w4fMetas: W4FMetaData[],
+  playMetas: BFPlayMetaData[],
 }
 
 const webTitle = "butterandfly's Playground 🎮";
 
-export default function Home({ blogMetas, w4fMetas }: HomeProps) {
+export default function Home({ blogMetas, w4fMetas, playMetas }: HomeProps) {
   return (
     <div className="root">
       <Head>
@@ -22,6 +25,7 @@ export default function Home({ blogMetas, w4fMetas }: HomeProps) {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Banner></Banner>
+      <BFPlayList playMetas={playMetas}></BFPlayList>
       <W4FList w4fMetas={w4fMetas}></W4FList>
       <BlogList blogMetas={blogMetas}></BlogList>
       <style jsx>{`
@@ -69,10 +73,12 @@ function Banner() {
 export const getStaticProps = async () => {
   const blogMetas = getAllBlogMetas();
   const w4fMetas = getAllW4FMetas();
+  const playMetas = getAllBFPlayMetas();
   return {
     props: {
       blogMetas,
       w4fMetas,
+      playMetas,
     }
   }
 }

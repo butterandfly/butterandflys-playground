@@ -1,11 +1,8 @@
 import Button from '@material-ui/core/Button'
 import { Piece, QuestBuilder } from './qmd';
-import { QuestProgressData, QuestComponetPros, QuestData } from './quest'
+import { QuestProgressData, QuestComponentPros, QuestData } from './quest'
 
-export default function GotIt({questProgress, onQuestProgressUpdated}: QuestComponetPros) {
-  // const userData = useUserDataContext();
-  // const prog = userData.findQuestProgress!(partID);
-
+export default function GotIt({questProgress, onQuestProgressUpdated}: QuestComponentPros) {
   const disabled = ['success', 'failure'].includes(questProgress.status) ? true : false;
 
   const onSubmit = () => {
@@ -28,7 +25,6 @@ export default function GotIt({questProgress, onQuestProgressUpdated}: QuestComp
   </div>)
 }
 
-// export function createGotItData(_: Piece): QuestData {
 export function createGotItData(): QuestData {
   return {
     questType: 'GotIt',

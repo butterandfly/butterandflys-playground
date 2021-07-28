@@ -13,7 +13,7 @@ export interface QuestProgressData {
   attemptsLeft: number;
 }
 
-export interface QuestComponetPros {
+export interface QuestComponentPros {
   quest: QuestData,
   questProgress: QuestProgressData,
   onQuestProgressUpdated: (progress: QuestProgressData) => void,

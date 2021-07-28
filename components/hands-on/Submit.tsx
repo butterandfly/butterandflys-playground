@@ -12,13 +12,20 @@ type SubmitPros = {
 
 export default function Submit({onSubmit, quest, questProgress, compareFunc}: SubmitPros) {
   if (!compareFunc) compareFunc = ((a, b) => (a === b));
-  const {attemptsLeft, currentInput, attempts, status} = questProgress;
+  const {attemptsLeft, currentInput, status} = questProgress;
   const isCorrect = (status === 'success');
   let disable = false;
   if (attemptsLeft === 0 || isCorrect) {
     disable = true;
   }
+
+  // Disable when inputs are not enough.
+  const answerLen = quest.correct.split(';').length;
   if (!currentInput) disable = true;
+  else {
+    const currentInputLen = currentInput.split(';').length;
+    if (currentInputLen !== answerLen) disable = true;
+  }
 
   return (
     <div className="root">

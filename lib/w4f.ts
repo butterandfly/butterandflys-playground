@@ -3,25 +3,21 @@ import path from 'path';
 import fs from 'fs';
 import matter from 'gray-matter';
 import { compileQMD, initPartProgressData } from '../components/hands-on/qmd';
+import { PlayData, PlayProgressData } from '../components/hands-on/Play';
 
-export interface W4FData {
-  id: string,
-  title: string,
-  createDate: string,
-  parts: PartsMap,
+export interface W4FData extends PlayData {
+}
+
+export interface W4FProgressData extends PlayProgressData {
 }
 
 export interface W4FMetaData {
   id: string,
   title: string,
   createDate: string,
+  version: string,
 }
 
-export interface W4FProgressData {
-  w4fID: string, // '01-02'
-  w4fTitle: string,
-  partProgresses: PartProgressesMap,
-}
 
 const w4fDirectory = path.join(process.cwd(), 'w4fs');
 
@@ -38,6 +34,7 @@ export function getAllW4FMetas() {
     return {
       id: w4fID,
       title: data.title,
+      version: data.version,
       createDate: data.createDate.toString(),
     } as W4FMetaData;
   });
@@ -61,6 +58,7 @@ export function getW4F(w4fID: string): W4FData {
   const w4f: W4FData = {
     id: w4fID,
     title: data.title,
+    version: data.version,
     createDate: data.createDate.toString(),
     parts: compileQMD(matterResult.content),
   };
@@ -74,8 +72,9 @@ export async function initW4FProgress(w4f: W4FData) {
   })
 
   const w4fProg: W4FProgressData = {
-    w4fID: w4f.id,
-    w4fTitle: w4f.title,
+    playID: w4f.id,
+    playTitle: w4f.title,
+    version: w4f.version,
     partProgresses: partProgresses,
   };
 
