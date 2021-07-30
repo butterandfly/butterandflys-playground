@@ -20,6 +20,7 @@ export default function GotIt({questProgress, onQuestProgressUpdated}: QuestComp
     <style jsx>{`
       .root {
         text-align: right;
+        margin: 16px 0;
       }
     `}</style>
   </div>)

@@ -16,14 +16,15 @@ export function InfoBox({children, title, borderColor, backgroundColor}: InfoBox
         border-left: 3px solid ${borderColor};
         display: flex;
         background: ${backgroundColor};
-        margin: 18px 0;
+        margin: 24px 0;
+        padding: 16px 16px 0px 0px;
       }
 
       .root .box-header {
         line-height: 18px;
-        margin: 16px 0;
-        font-size: small;
-        padding: 0 8px;
+        padding: 0 16px;
+        margin: 0;
+        font-size: medium;
       }
 
       .root .box-body {
@@ -39,5 +40,5 @@ interface IdeaProps {
 
 export function Idea({children}: IdeaProps) {
   const title = '💡'
-  return <InfoBox title={title} borderColor="#ffe000" backgroundColor="#fffff4">{children}</InfoBox>
+  return <InfoBox title={title} borderColor="#ffe000" backgroundColor="floralwhite">{children}</InfoBox>
 }

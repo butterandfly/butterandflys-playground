@@ -1,11 +1,83 @@
 ---
-title: Hello World! 🗺
-desc: Welcome to butterandfly's playground!
-createDate: 2021-07-23
+title: 游乐场构建 101 🏗
+desc: 该网站的构建使用了那些工具？
+createDate: 2021-07-30
 ---
 
-Welcome to my **playground**!
+欢迎！“butterandfly's Playground”是一个我用来放置各种教程、文章及各种试验性想法的地方。
 
-# Test
+这篇文章里，我将会阐述我是用了哪些工具及技术，来构建这么一个“游乐场”的。
 
-# Test
+---
+
+## 服务架构 ⏅
+原谅我用了如此高大上的标题，毕竟这网站实在没什么架构可言：
+- 还没买域名
+- 网站“托管”在[Vercel](https://vercel.com/)上，而且对应地，
+- 使用了[next.js](https://nextjs.org)
+- 用户的教程进度数据都存放在用户浏览器里面的Localstorage里面
+- 除了*next.js*自身的Analysis外，服务器不记录用户的任何数据
+
+在这里我必须表达下我对*next.js*的喜爱。它和*Vercel*让一个网站的搭建变得极其简单。
+
+## 前端 🎨
+### React
+该网站的代码，主要都是用React来编写。  
+我对React的喜欢，是远远小于对*Web Components*的。但因为*next.js*依赖于React，而React本身也的确有很多可取之处：
+- 数据只能单向流动（绑定），
+- 不建议使用者在编写业务代码时使用Web的事件模型，
+- Functional programming，
+- 比*Web Components*简单很多的生命周期，
+
+这些都使得编写一般/简单的组件时的心智负担会大大降低。同时React拥有非常良好的生态，例如在这网站里就使用了：
+- *Material UI*
+- *react-spring*
+- *react-markdown*
+
+不过以后可能会将一些组件改成*Web Components*。
+
+### CSS
+使用React最麻烦的地方，就是其没有原生的 scoped CSS 支持。可选的解决方案很多：
+- Material UI 使用的 CSS-In-JS
+- Styled Component
+- CSS module
+- styled-jsx
+
+这里我选用的是*next.js*提供的，编写体验也最接近lit的styled-jsx。  
+一个组件的代码看起来大概这样子：
+```
+export default function Comp() {
+  return <div className="root">
+    <h1 title="">Hi There!</h1>
+    <style jsx>{`
+      .root {
+        border: 1px solid lightgray;
+        padding: 16px 8px;
+        border-radius: 5px;
+        margin-top: 16px;
+      }
+
+      .title {
+        color: seagreen;
+      }
+    `}</style>
+  </div>;
+}
+```
+
+### MDx
+项目里的教程，都用到了类MDx的文档格式来编写。选择类MDx的理由是：
+- 这里的教程，如 Words for Fluency 等，可能会演变成独立的开源项目。所以教程的编写要兼顾便捷、可共同维护及扩展性，一个类似Markdown却可加入其他组件的文档格式可能是最好的选择。
+- MDx可以直接使用项目里的React组件。
+- 这里只是借用的MDx的部分语法，实际上编译的时侯是用过正则来匹配内容，再生成对应内容。
+- 以后可能会设计基于MD但兼顾编写便利性的格式。
+
+### Typescript
+只要是需要维护的js项目，我都会typescript来写：
+- 已经付出了ts的学习成本，
+- 过程中只需要少量的ts相关的设置成本，
+- 更易维护，
+- 更少bug。
+
+### Testing
+暂时只用Jest做必要的单元测试。

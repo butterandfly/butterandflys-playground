@@ -16,10 +16,10 @@ export default function MathBox({children, header, color}: MathBoxProps) {
     <style jsx>{`
       .root {
         margin-top: 24px;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
         border: 1px solid ${color};
         border-radius: 4px;
-        padding: 8px 16px;
+        padding: 16px 16px;
       }
 
       .header {
@@ -28,9 +28,14 @@ export default function MathBox({children, header, color}: MathBoxProps) {
         display: inline-block;
         background: white;
         position: absolute;
-        transform: translate(0, -20px);
+        transform: translate(0, -28px);
         font-size: 18px;
         padding: 0 4px;
+      }
+
+      .root :global(p) {
+        margin-top: 0;
+        margin-bottom: 8px;
       }
 
     `}</style>

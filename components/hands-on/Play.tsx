@@ -189,7 +189,7 @@ function QuestionPart({part, partProgress, onPartProgressUpdated}: QuestionPartP
     <style jsx>{`
         .root :global(.g-part-paper) {
           padding: 8px 16px;
-          margin: 24px 0;
+          margin: 24px 8px;
         }
         .title {
           color: steelblue;

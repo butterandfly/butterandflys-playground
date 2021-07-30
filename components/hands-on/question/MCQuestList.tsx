@@ -120,7 +120,14 @@ function MCQuestItem({questItem, questItemProgress, onQuestItemProgressUpdated}:
   return (
     <div>
       <MD>{questItem.questionContent}</MD>
-      {genOptions()}
+      <div className="options">
+        {genOptions()}
+      </div>
+      <style jsx>{`
+      .options {
+        margin-bottom: 16px;
+      }
+      `}</style>
     </div>
   )
 }

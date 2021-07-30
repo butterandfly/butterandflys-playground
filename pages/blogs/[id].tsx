@@ -1,5 +1,5 @@
 import { getAllBlogIDs, getBlog } from "../../lib/blog";
-import BlogLayout from '../../components/Layout'
+import Layout from '../../components/Layout'
 import MD from '../../components/hands-on/MD'
 
 interface BlogProps {
@@ -10,9 +10,9 @@ export default function Blog({blog}: BlogProps) {
 
   return (
     <div className="root">
-    <BlogLayout title={blog.title}>
+    <Layout title={blog.title}>
     <div className="container">
-      <h1 className="section-title">
+      <h1 className="title">
         {blog.title}
       </h1>
       <div>
@@ -21,30 +21,19 @@ export default function Blog({blog}: BlogProps) {
         </MD>
       </div>
       <style jsx>{`
-        .section-title {
-          color: darkorange;
+        .title {
+          color: #444444;
           margin-top: 8px;
         }
-        .lessonNum {
-          color: gray;
-          font-size: 20px;
-          font-style: italic;
-          margin-bottom: 8px;
-        }
-        .next {
-          text-align: center;
-          margin-bottom: 32px;
-        }
-        .root :global(.next-btn) {
-          height: 64px;
-          width: 256px;
-        }
+
         .container {
-          width: 960px;
+          max-width: 872px;
+          padding: 0 16px;
+          flex-grow: 1;
         }
     `}</style>
     </div>
-    </BlogLayout>
+    </Layout>
     </div>
   )
 }

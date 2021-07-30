@@ -24,7 +24,7 @@ export default function MCOption({val, onChangeAnswer, children, status, attempt
   if (['success', 'failure'].includes(status)) disable = true;
 
   return (
-    <div className={`gt-radio-option ${borderClass}`}>
+    <div className={`root ${borderClass}`}>
       <FormControlLabel
         value={val}
         onChange={() => onChangeAnswer(val)}
@@ -36,19 +36,22 @@ export default function MCOption({val, onChangeAnswer, children, status, attempt
         }
       />
       <style jsx>{`
-        .gt-radio-option {
+        .root {
           display: flex;
-          padding: 0px 8px;
-          margin: 2px 0;
+          padding: 8px 8px;
         }
 
-        .gt-radio-option.correct {
+        .root :global(p) {
+          margin: 0;
+        }
+
+        .correct {
           /* border: 2px solid seagreen; */
           border-radius: 4px;
           background-color: #c1e2d6;
         }
 
-        .gt-radio-option.wrong {
+        .wrong {
           /* border: 2px solid #f50057; */
           border-radius: 4px;
           background-color: #ecb2b2;
