@@ -69,11 +69,16 @@ function BlogCard({blogMeta, href}: {blogMeta: BlogMetaData, href: string}) {
       </Link>
       <style jsx>{`
         .container {
-          border: 2px solid darkorange;
+          border: 2px solid #ffac46;
           border-radius: 5px;
           padding: 16px;
           display: block;
           cursor: pointer;
+        }
+
+        .container:hover {
+          background: #ffac46;
+          color: white;
         }
 
         .title {
@@ -82,6 +87,10 @@ function BlogCard({blogMeta, href}: {blogMeta: BlogMetaData, href: string}) {
 
         .sub{
           color: gray;
+        }
+
+        .container:hover .sub {
+          color: white;
         }
       `}</style>
     </div>

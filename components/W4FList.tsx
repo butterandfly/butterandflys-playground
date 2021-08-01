@@ -79,6 +79,11 @@ function W4FCard({w4fMeta, href}: {w4fMeta: W4FMetaData, href: string}) {
           padding: 0 8px;
         }
 
+        .root:hover {
+          background: steelblue;
+          color: white;
+        }
+
         .container {
           cursor: pointer;
           width: 100%;

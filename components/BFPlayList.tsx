@@ -77,12 +77,21 @@ function BFPlayCard({playMeta, href}: {playMeta: BFPlayMetaData, href: string}) 
           cursor: pointer;
         }
 
+        .container:hover {
+          background: gray;
+          color: white;
+        }
+
         .title {
           margin: 12px 0;
         }
 
         .sub{
           color: gray;
+        }
+
+        .container:hover .sub {
+          color: white;
         }
       `}</style>
     </div>
