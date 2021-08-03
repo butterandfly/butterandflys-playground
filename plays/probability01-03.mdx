@@ -1,0 +1,75 @@
+---
+title: Sequential Models 🚥
+desc: "Probability 01-03: When experiments are one by one."
+createDate: 2021-08-02
+version: "0.1"
+---
+
+[[GotIt
+Sequential Experiment
+Many experiments have an inherently sequential character; for example, tossing a coin two times.
+
+In this section we will learn how to describe a sequential model.  
+Note:
+**The order matters when not specifically stated.**
+GotIt]]
+
+
+[[Quest
+**Tossing a coin 🪙 two times.**  
+Are the following sample spaces appropriate for this experiment? (H for Heads and T for Tails)
+<MCQuestList correct="A;B;A" totalAttempts="2" >
+1) $\{HH,HT,TH,TT\}$
+-----
+* Yes
+* No
+~~~~~
+
+2) $\{HH,TT,HT\}$
+-----
+* Yes
+* No
+~~~~~
+
+3) $\{(H,H), (T,T),(H,T),(T,H)\}$
+-----
+* Yes
+* No
+</MCQuestList>
+Quest]]
+
+[[GotIt
+<Idea>
+We often use lists to describe the outcomes of a sequential model, like $(x,y,z)$. 
+</Idea>
+GotIt]]
+
+[[GotIt
+## Tree-Based Sequential Description
+Since a sequential experiment is consist of multiple experiment, it is then often useful to describe the experiment and the associated sample space by means of **a tree-based sequential description**.
+
+Here is the tree for tossing a coin two times:
+<Mermaid>
+graph LR
+    Root --- T
+    Root --- H
+    T --- T,T
+    T --- T,H
+    H --- H,T
+    H --- H,H
+</Mermaid>
+GotIt]]
+
+[[Quest
+(This question is from *Probability* by MITx.)  
+Paul checks the weather forecast. If the forecast is good, Paul will go out for a walk. If the forecast is bad, then Paul will either stay home or go out. If he goes out, he might either remember or forget his umbrella. In the tree diagram below, identify the leaf that corresponds to the event that the forecast is bad and Paul stays home.
+
+![Question](/probability/01-03-a.jpeg)
+
+<MCQuest totalAttempts="2" correct="B">
+* 1
+* 2
+* 3
+* 4
+</MCQuest>
+Quest]]

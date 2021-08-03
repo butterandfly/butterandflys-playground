@@ -59,6 +59,7 @@ export default function Flashcard({children}: FlashcardProps) {
         align-items: center;
         border: 1px solid gray;
         border-radius: 5px;
+        padding: 16px;
       }
 
       .root :global(.front) {

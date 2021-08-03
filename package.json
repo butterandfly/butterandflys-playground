@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "@types/mermaid": "^8.2.7",
     "@types/react": "17.0.14",
     "babel-jest": "^27.0.6",
     "eslint": "7.31.0",

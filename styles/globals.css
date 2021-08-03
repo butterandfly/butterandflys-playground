@@ -113,3 +113,9 @@ a {
 .markdown-body a:hover {
   text-decoration: underline;
 }
+
+.markdown-body img {
+  display: block;
+  margin: 16px auto;
+  max-width: 100%;
+}

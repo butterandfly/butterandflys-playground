@@ -10,6 +10,7 @@ import { Idea } from './InfoBox';
 import { QuestData, QuestProgressData } from "./quest"
 import FlashcardList from './card/FlashcardList';
 import MCQuestList, { MCQuestListBuilder } from './question/MCQuestList';
+import Mermaid from './Mermaid';
 
 export type PartType = 'GotIt' | 'Quest';
 
@@ -63,6 +64,7 @@ export const mdxComponents: {[key: string]: any} = {
   Idea: Idea,
   FlashcardList: FlashcardList,
   MCQuestList: MCQuestList,
+  Mermaid: Mermaid,
 }
 
 export const questComponents = [
@@ -78,6 +80,7 @@ export const innerContentTakers = [
   'Axiom',
   'Idea',
   'FlashcardList',
+  'Mermaid',
 ]
 
 
