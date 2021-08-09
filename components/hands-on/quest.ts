@@ -24,7 +24,6 @@ export function isQuestFinished(status: string) {
   return false;
 }
 
-
 // Check the answer, then return a new quest progress.
 // Status, attemptsLeft and attempts will be updated.
 export function checkAnswer(correct: any, oldProg: QuestProgressData, compareFunc: ((a: any, b: any) => boolean) = (a, b) => (a === b)) {

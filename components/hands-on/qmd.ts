@@ -11,6 +11,7 @@ import { QuestData, QuestProgressData } from "./quest"
 import FlashcardList from './card/FlashcardList';
 import MCQuestList, { MCQuestListBuilder } from './question/MCQuestList';
 import Mermaid from './Mermaid';
+import RQuest, { RQuestBuilder } from './question/DynamicRQuest'
 
 export type PartType = 'GotIt' | 'Quest';
 
@@ -65,12 +66,14 @@ export const mdxComponents: {[key: string]: any} = {
   FlashcardList: FlashcardList,
   MCQuestList: MCQuestList,
   Mermaid: Mermaid,
+  RQuest: RQuest,
 }
 
 export const questComponents = [
   'MCQuest',
   'BFQuest',
   'MCQuestList',
+  'RQuest',
 ];
 
 export const innerContentTakers = [
@@ -88,6 +91,7 @@ export const buildersMap: {[key: string]: QuestBuilder} = {
   'MCQuest': MCQuestBuilder,
   'BFQuest': BFQuestBuilder,
   'MCQuestList': MCQuestListBuilder,
+  'RQuest': RQuestBuilder,
 }
 
 const partContainers = ['GotIt', 'Quest'];
